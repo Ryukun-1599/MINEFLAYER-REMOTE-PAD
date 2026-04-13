@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DonutSMP オークション検索</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header__brand">
+        <span class="header__logo" aria-hidden="true">◉</span>
+        <div>
+          <h1 class="header__title">DonutSMP オークション検索</h1>
+          <p class="header__subtitle">アクティブな注文を検索・並べ替え</p>
+        </div>
+      </div>
+      <a class="header__source" href="https://donut.auction/" target="_blank" rel="noopener noreferrer">データ: donut.auction</a>
+    </header>
+
+    <section class="toolbar" aria-label="取得と検索">
+      <div class="toolbar__fetch">
+        <button type="button" class="btn btn--primary" id="btnFetchPage">最新を1ページ取得</button>
+        <button type="button" class="btn btn--secondary" id="btnFetchAll">全ページ取得</button>
+        <span class="toolbar__hint" id="fetchHint" role="status"></span>
+      </div>
+      <div class="toolbar__search">
+        <label class="sr-only" for="searchInput">キーワード検索</label>
+        <input
+          type="search"
+          id="searchInput"
+          class="input"
+          placeholder="アイテムID・プレイヤー名・エンチャ名で絞り込み…"
+          autocomplete="off"
+        />
+        <label class="select-wrap">
+          <span class="sr-only">並べ替え</span>
+          <select id="sortSelect" class="select">
+            <option value="price-desc">単価 高い順</option>
+            <option value="price-asc">単価 安い順</option>
+            <option value="remaining-desc">残り数量 多い順</option>
+            <option value="updated-desc">更新 新しい順</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <p class="notice">
+      APIは<a href="https://donut.auction/api" target="_blank" rel="noopener noreferrer">donut.auction</a>の公開仕様を使用しています。
+      全ページ取得は<strong>30分に1回まで</strong>が推奨です。取得状況はブラウザに記録します。
+    </p>
+
+    <div class="stats" id="stats" aria-live="polite"></div>
+
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">アイテム</th>
+            <th scope="col">エンチャ</th>
+            <th scope="col">購入者</th>
+            <th scope="col" class="num">単価</th>
+            <th scope="col" class="num">注文 / 配送</th>
+            <th scope="col">期限</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+          <tr class="table__empty">
+            <td colspan="6">「最新を1ページ取得」でデータを読み込んでください。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="footer">
+      <p>本アプリは <a href="https://donut.auction/" target="_blank" rel="noopener noreferrer">donut.auction</a> をデータソースとして表示しています（利用規約に準拠）。</p>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
