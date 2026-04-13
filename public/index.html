@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#12151c" />
+  <title>Mineflayer リモートパッド</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.10.2/nipplejs.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="authGate" class="auth hidden">
+    <p>このサーバーはトークン保護されています。</p>
+    <input type="password" id="authToken" placeholder="PAD_TOKEN と同じ値" autocomplete="off" />
+    <button type="button" id="authBtn">接続</button>
+  </div>
+
+  <main class="app" id="app">
+    <header class="bar">
+      <span class="bar__dot" id="wsDot" aria-hidden="true"></span>
+      <span class="bar__text" id="statusText">接続待ち…</span>
+    </header>
+
+    <section class="sticks" aria-label="バーチャルスティック">
+      <div class="stick stick--move">
+        <span class="stick__label">移動</span>
+        <div id="zoneMove" class="stick__zone"></div>
+      </div>
+      <div class="stick stick--look">
+        <span class="stick__label">視点</span>
+        <div id="zoneLook" class="stick__zone"></div>
+      </div>
+    </section>
+
+    <button type="button" class="tap-attack" id="tapAttack">ここをタップ / クリックで攻撃・掘削</button>
+
+    <section class="actions" aria-label="アクション">
+      <button type="button" class="btn btn--jump" id="btnJump">ジャンプ</button>
+      <button type="button" class="btn btn--attack" id="btnAttack">攻撃 / 掘る</button>
+      <button type="button" class="btn btn--use" id="btnUse">使用</button>
+      <button type="button" class="btn btn--hold" id="btnSneak">しゃがみ（押し続け）</button>
+      <button type="button" class="btn btn--toggle" id="btnSprint" aria-pressed="false">ダッシュ</button>
+    </section>
+
+    <section class="hotbar" aria-label="ホットバー">
+      <span class="hotbar__hint">スロット 1〜9（キー 1-9）</span>
+      <div class="hotbar__row" id="hotbarRow"></div>
+    </section>
+
+    <section class="chatbox">
+      <label class="sr-only" for="chatInput">チャット</label>
+      <input type="text" id="chatInput" class="chatbox__input" maxlength="256" placeholder="チャットを送信…" autocomplete="off" />
+      <button type="button" class="chatbox__send" id="chatSend">送信</button>
+    </section>
+
+    <p class="help">
+      PC: WASD 移動・スペース ジャンプ・Shift しゃがみ・Ctrl ダッシュ・F 攻撃・マウスで視点（右エリアをドラッグ）。
+      スマホ: 左スティック移動、右スティック視点、ボタンでアクション。
+    </p>
+  </main>
+
+  <script src="client.js"></script>
+</body>
+</html>
