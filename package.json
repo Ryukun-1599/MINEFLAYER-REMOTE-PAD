@@ -1,7 +1,6 @@
 {
   "name": "mineflayer-remote-pad",
   "version": "1.0.0",
-  "private": true,
   "description": "Mineflayer bot + virtual gamepad / keyboard / mouse over WebSocket",
   "main": "server.js",
   "scripts": {
@@ -10,6 +9,14 @@
   "engines": {
     "node": ">=18"
   },
+  "keywords": [
+    "minecraft",
+    "mineflayer",
+    "websocket",
+    "gamepad",
+    "remote-control"
+  ],
+  "license": "MIT",
   "dependencies": {
     "express": "^4.21.2",
     "mineflayer": "^4.20.0",
